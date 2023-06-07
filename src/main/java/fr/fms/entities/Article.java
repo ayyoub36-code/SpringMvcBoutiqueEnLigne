@@ -2,7 +2,7 @@ package fr.fms.entities;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Locale.Category;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -25,16 +26,17 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString(exclude = {"orderItems"})
 public class Article implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@NotNull
-	@Size(min = 5, max = 50)
+	@Size(min = 2, max = 50)
 	private String description;
-	@DecimalMax("50")
-	private double unitaryPrice;
 	private String brand;
+	@DecimalMin("50")
+	private double unitaryPrice;
 
 	@ManyToOne
 	private Category category;

@@ -3,7 +3,8 @@ package fr.fms.dao;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import fr.fms.entities.Article;
+import fr.fms.entities.Category;
 
-public interface ArticleRepository extends JpaRepository<Article,Long>{
+public interface CategoryRepository  extends JpaRepository<Category,Long>{
 
 }
