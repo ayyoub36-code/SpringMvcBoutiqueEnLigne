@@ -14,17 +14,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Entity @Data @NoArgsConstructor @AllArgsConstructor @ToString
-public class Category implements Serializable{
-	private static final long serialVersionUID=1L;
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(exclude = {"articles"})
+public class Category implements Serializable {
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String name;
-	@OneToMany(mappedBy ="category" )
+	@OneToMany(mappedBy = "category")
 	private Collection<Article> articles;
 
-	
-	
-	
 }
-

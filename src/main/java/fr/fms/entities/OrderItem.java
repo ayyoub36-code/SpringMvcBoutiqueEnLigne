@@ -16,11 +16,14 @@ import lombok.ToString;
 @Entity @Data @NoArgsConstructor @AllArgsConstructor @ToString
 public class OrderItem implements Serializable {
 	
-	
 	private static final long serialVersionUID = 1L;
+	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY )
 	private Long id;
 	private int quantity;
+	
+	@ManyToOne
+	private Article article;
 	
 	@ManyToOne
 	private Order order;
