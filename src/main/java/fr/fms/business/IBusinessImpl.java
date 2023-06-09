@@ -28,12 +28,6 @@ public class IBusinessImpl implements IBusiness {
 		return articleRepository.findByDescriptionContains(kw, PageRequest.of(page, SIZE));
 	}
 
-	// TODO
-	@Override
-	public Page<Article> getArticleByCategory(long idCat) {
-		Page<Article> articles = null;
-		return articles;
-	}
 
 	@Override
 	public List<Category> getCategories() {
@@ -44,6 +38,12 @@ public class IBusinessImpl implements IBusiness {
 	@Override
 	public Category getCategoryById(Long idCat) {
 		return categoryRepository.findById(idCat).get();
+	}
+
+	@Override
+	public Page<Article> getArticleByCategoryAndDescription(long idCat, String keyword,int page) {
+		final int SIZE = 5;
+		return articleRepository.findByCategoryIdAndDescriptionContains(idCat, keyword,  PageRequest.of(page, SIZE));
 	}
 
 }

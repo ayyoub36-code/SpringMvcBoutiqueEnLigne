@@ -20,18 +20,34 @@ public class ArticleController {
 	IBusinessImpl iBusinessImpl;
 
 	@GetMapping("/index")
-	public String index(Model model, @RequestParam(name = "category", defaultValue = "0") long idCat) {
+	public String index(Model model, @RequestParam(name = "category", defaultValue = "0") long idCat,
+			@RequestParam(name = "keyword", defaultValue = "") String kw,
+			@RequestParam(name = "page", defaultValue = "0") int page) {
 
-		// recuperer les articles
-		Page<Article> page = iBusinessImpl.getArticlesPaginateByKeyWord(0, "");
-		List<Article> listArticles = page.getContent();
+		Page<Article> pages = null;
+		
+		if(idCat!=0) {
+			Category category = iBusinessImpl.getCategoryById(idCat);
+			model.addAttribute("currentCategory", category.getId());
+			pages = iBusinessImpl.getArticleByCategoryAndDescription(idCat, kw, page);
+		}else {
+			pages = iBusinessImpl.getArticlesPaginateByKeyWord(page, kw);
+		}
+		
+		
+		// recuperer les articles par keyword
+		
+		List<Article> listArticles = pages.getContent();
 		model.addAttribute("articles", listArticles);
 
 		// recuperer les categories
 		List<Category> categories = iBusinessImpl.getCategories();
 		model.addAttribute("categories", categories);
-		Category category = iBusinessImpl.getCategoryById(idCat);
-		model.addAttribute("currentCategory", category.getId());
+
+		
+		model.addAttribute("pages", new int[pages.getTotalPages()]);
+		model.addAttribute("currentPage",page);
+		
 		return "index";
 	}
 

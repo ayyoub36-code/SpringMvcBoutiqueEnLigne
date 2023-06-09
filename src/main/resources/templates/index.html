@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div layout:fragment="content">
-		<h2 class="">hello world !</h2>
+		<div class="container">
 		<div class="card  mb-3 mt-3">
 			<div class="card-header bg-info fs-5">Liste des categories</div>
 			<div class="card-body ">
@@ -20,13 +20,43 @@
 				</div>
 			</div>
 		</div>
-
-		<div th:each="a:${articles}">
-			<p th:text="${a.brand}">
 		</div>
+		<div class="container">
+		<div class="card  mb-3 mt-3">
+			<div class="card-header bg-info fs-5">Liste des articles</div>
+			<div class="card-body ">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Description</th>
+							<th>Marque</th>
+							<th>Prix</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="a:${articles}">
+							<td th:text="${a.id}"></td>
+							<td th:text="${a.description}"></td>
+							<td th:text="${a.brand}"></td>
+							<td th:text="${a.unitaryPrice}"></td>
+						</tr>
+					</tbody>
 
-		<div th:each="c:${categories}">
-			<p th:text="${c.name}">
+				</table>
+			</div>
+		
+		<div class="card-footer">
+			<ul class="nav nav-pills">
+				<li th:each="page,status:${pages}"><a
+					th:class="${currentPage==status.index}?'btn btn-info ms-1':'btn btn-outline-info ms-1'"
+					th:href="@{/index(page=${status.index},category=${currentCategory})}"
+					th:text="${status.index}"></a></li>
+
+			</ul>
+
+		</div>
+		</div>
 		</div>
 	</div>
 </body>

@@ -20,15 +20,17 @@ public interface IBusiness {
 	// afficher une categorie
 	public Category getCategoryById(Long idCat);
 
-	// get all article of category avec la pagination
-	public Page<Article> getArticleByCategory(long idCat);
+	// obtenir eds pages d' articles correspondant à la categorie et au keyword an parametre
+	public Page<Article> getArticleByCategoryAndDescription(long idCat, String keyword, int page);
+
+	
 
 	// CRUD sur les articles
-	// creation d'un article
-	// update d'un article
-	// delete d'un article
-
-	// recherche par mot clé
+	// creation d'un article TODO Christian
+	// update d'un article TODO Christian
+	// delete d'un article TODO Nicolas
+	// + commencer à regaredr la bar nav (href -> th:href, logo, etc)
+	// recherche par mot clé 
 	// enregistrer le customer
 	// enregistrer la commande
 
