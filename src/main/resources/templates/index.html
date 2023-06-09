@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" lang=""
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta charset="utf-8">
+<title>Index</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<h2 class="">hello world !</h2>
+		<div class="card  mb-3 mt-3">
+			<div class="card-header bg-info fs-5">Liste des categories</div>
+			<div class="card-body ">
+				<div th:each="c:${categories}" class="d-inline">
+					<a
+						th:class="${currentCategory == c.id}?'btn btn-info ms-1':'btn btn-outline-info ms-1'"
+						th:text="${c.name}" th:href="@{/index(category=${c.id})}"
+						th:value="${c.id}"></a>
+				</div>
+			</div>
+		</div>
+
+		<div th:each="a:${articles}">
+			<p th:text="${a.brand}">
+		</div>
+
+		<div th:each="c:${categories}">
+			<p th:text="${c.name}">
+		</div>
+	</div>
+</body>
+</html>
