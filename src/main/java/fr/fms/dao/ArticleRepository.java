@@ -11,4 +11,5 @@ public interface ArticleRepository extends JpaRepository<Article,Long>{
 	// tous les articles par mot clé 
 	Page<Article> findByDescriptionContains(String description, Pageable pageable);
 	Page<Article> findByCategoryIdAndDescriptionContains(Long categoryId,String keyword, Pageable pageable);
+	
 }

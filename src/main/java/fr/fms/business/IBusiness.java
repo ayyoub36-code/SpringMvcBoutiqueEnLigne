@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
+import fr.fms.dao.ArticleRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 
@@ -25,10 +26,15 @@ public interface IBusiness {
 
 	
 
+	
+
+	
+
 	// CRUD sur les articles
 	// creation d'un article TODO Christian
 	// update d'un article TODO Christian
 	// delete d'un article TODO Nicolas
+	public void deleteArticle(Long id);
 	// + commencer à regaredr la bar nav (href -> th:href, logo, etc)
 	// recherche par mot clé 
 	// enregistrer le customer

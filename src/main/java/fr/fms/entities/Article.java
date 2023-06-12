@@ -43,5 +43,5 @@ public class Article implements Serializable {
 
 	@OneToMany(mappedBy = "article")
 	private Collection<OrderItem> orderItems;
-
+	
 }

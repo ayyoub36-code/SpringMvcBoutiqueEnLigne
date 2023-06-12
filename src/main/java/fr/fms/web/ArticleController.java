@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.fms.business.IBusinessImpl;
+import fr.fms.dao.ArticleRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 
 @Controller
 public class ArticleController {
+	
+	
 
 	@Autowired
 	IBusinessImpl iBusinessImpl;
@@ -49,6 +52,11 @@ public class ArticleController {
 		model.addAttribute("currentPage",page);
 		
 		return "index";
+	}
+	@GetMapping("/delete")
+	public String delete(Long id, int page,String keyword) {
+		iBusinessImpl.deleteArticle(id);
+		return "redirect:/index?page="+page+"&keyword="+keyword;
 	}
 
 }

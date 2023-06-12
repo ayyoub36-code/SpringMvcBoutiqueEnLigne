@@ -31,9 +31,9 @@ public class SpringMvcEnLigneApplication implements CommandLineRunner {
 	}
 	public void generatedata(){
 
-//		Category smartphone = categoryRepository.save(new Category(1,"Smartphone",null));
-//		Category tablet = categoryRepository.save(new Category(2,"Tablet",null));
-//		Category pc = categoryRepository.save(new Category(3,"PC",null));
+		//Category smartphone = categoryRepository.save(new Category(1,"Smartphone",null));
+		//Category tablet = categoryRepository.save(new Category(2,"Tablet",null));
+		//Category pc = categoryRepository.save(new Category(3,"PC",null));
 		Category smartphone = categoryRepository.findById(1L).get();
 		Category tablet = categoryRepository.findById((long)2).get();
 		Category pc = categoryRepository.findById((long)3).get();

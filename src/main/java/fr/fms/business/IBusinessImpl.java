@@ -2,6 +2,7 @@ package fr.fms.business;
 
 import java.util.List;
 
+import org.hibernate.sql.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -45,5 +46,20 @@ public class IBusinessImpl implements IBusiness {
 		final int SIZE = 5;
 		return articleRepository.findByCategoryIdAndDescriptionContains(idCat, keyword,  PageRequest.of(page, SIZE));
 	}
+//	@Override
+//	public String deleteArticle(Long id) {
+//		return iBusinessImpl.deleteById(id);
+//	}
 
+	@Override
+	public void deleteArticle(Long id) {
+		articleRepository.deleteById(id);
+		
+	}
+
+//	@Override
+//	public  deleteArticle(Long id) {
+//		return articleRepository.deleteById(id);
+//		
+//	}
 }
