@@ -70,4 +70,9 @@ public class IBusinessImpl implements IBusiness {
 		return null;
 	}
 
+	@Override
+	public void deleteArticle(Long id) {
+		articleRepository.deleteById(id);
+
+	}
 }

@@ -19,6 +19,8 @@ import fr.fms.entities.Category;
 
 @Controller
 public class ArticleController {
+	
+	
 
 	@Autowired
 	IBusinessImpl iBusinessImpl;
@@ -37,7 +39,7 @@ public class ArticleController {
 		} else {
 			pages = iBusinessImpl.getArticlesPaginateByKeyWord(page, kw);
 		}
-
+		model.addAttribute("keyword",kw);
 		// recuperer les articles par keyword
 
 		List<Article> listArticles = pages.getContent();
@@ -51,6 +53,11 @@ public class ArticleController {
 		model.addAttribute("currentPage", page);
 
 		return "index";
+	}
+	@GetMapping("/delete")
+	public String delete(Long id, int page,String keyword) {
+		iBusinessImpl.deleteArticle(id);
+		return "redirect:/index?page="+page+"&keyword="+keyword;
 	}
 
 	// Formulaire pour créer un article.
