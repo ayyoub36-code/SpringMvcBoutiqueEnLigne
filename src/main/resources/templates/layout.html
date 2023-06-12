@@ -25,6 +25,10 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="#">Home</a></li>
+						
+                    <!-- Créer un nouvel article. -->
+                    <!-- Malgré th:attr="href=@{/articles/create}" Le lien ne s'active pas avec bootstrap ? -->
+					<li class="nav-item"><a class="nav-link" th:href="@{/article}">New article</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Features</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="#">Pricing</a>

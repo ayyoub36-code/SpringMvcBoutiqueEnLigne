@@ -39,7 +39,11 @@
 							<td th:text="${a.id}"></td>
 							<td th:text="${a.description}"></td>
 							<td th:text="${a.brand}"></td>
-							<td th:text="${a.unitaryPrice}"></td>
+							<td th:text="${a.unitaryPrice}"></td> 
+							<td>
+                                <a class="btn btn-primary" th:href="@{/edit(id=${a.id})}">Edit</a>
+<!--                                 <a class="btn btn-primary" th:href="@{/edit(id=${a.id}, brand=${a.brand},description=${a.description}, price=${a.unitaryPrice}, page=${currentPage}, keyword=${keyword})}">Edit</a> -->
+                            </td> 
 						</tr>
 					</tbody>
 
