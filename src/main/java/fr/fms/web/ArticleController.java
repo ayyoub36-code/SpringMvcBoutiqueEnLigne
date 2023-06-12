@@ -36,7 +36,7 @@ public class ArticleController {
 		}else {
 			pages = iBusinessImpl.getArticlesPaginateByKeyWord(page, kw);
 		}
-		
+		model.addAttribute("keyword",kw);
 		
 		// recuperer les articles par keyword
 		
