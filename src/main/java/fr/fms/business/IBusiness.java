@@ -29,8 +29,10 @@ public interface IBusiness {
 
 	// delete d'un article
 	public void deleteArticle(Long id);
+	
+	// saveCustomer
+	// saveOrder
 
-	// enregistrer le customer
-	// enregistrer la commande
+
 
 }
