@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
+import fr.fms.entities.Customer;
 
 public interface IBusiness {
 
@@ -29,10 +30,10 @@ public interface IBusiness {
 
 	// delete d'un article
 	public void deleteArticle(Long id);
-	
-	// saveCustomer
-	// saveOrder
 
+	public Customer getCustomerById(Long id);
+
+	public void saveCustomer(Customer customer);
 
 
 }
