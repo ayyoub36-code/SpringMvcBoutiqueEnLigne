@@ -22,7 +22,7 @@ public class CustomerController {
 
 	@Autowired
 	IBusinessImpl iBusinessImpl;
-	
+
 	Customer cust;
 
 	@GetMapping("/customer")
@@ -33,7 +33,6 @@ public class CustomerController {
 		return "newCustomer";
 	}
 
-	// Méthode qui crée un customer en base de données.
 	@PostMapping("/saveCustomer")
 	public String saveCustomer(@Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes) {
@@ -41,9 +40,8 @@ public class CustomerController {
 			return "newCustomer";
 		}
 		cust = customer;
-		// envoyer une variable a un autre controlleur
+		// envoie vers un orderController
 		redirectAttributes.addFlashAttribute("customer", cust);
-		// iBusinessImpl.saveCustomer(customer);
 		return "redirect:/order";
 	}
 }

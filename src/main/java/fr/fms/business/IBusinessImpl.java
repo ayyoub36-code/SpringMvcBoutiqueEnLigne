@@ -104,7 +104,6 @@ public class IBusinessImpl implements IBusiness {
 	public Customer saveCustomer(Customer customer) {
 		return customerRepository.saveAndFlush(customer);
 	}
-	// Customer
 
 	@Override
 	public Order saveOrder(Order order) {

@@ -9,9 +9,52 @@
 <body>
 	<div layout:fragment="content">
 		<div class="container">
-			<div class="col-md-5 mt-3 text-center border rounded">
-				<h3 class="mt-5 alert alert-danger p-3">Vous êtes sur l'order !!</h3>
-				
+			<div class="card col-md-5">
+				<div class="card-header  text-center bg-info fs-5">Client</div>
+				<div class="card-body mt-3">
+					<h3 th:text="${'Prénom : ' +customer.firstName}"></h3>
+					<h3 th:text="${'Nom : '+customer.lastName}"></h3>
+					<h3 th:text="${'Email : '+customer.email}"></h3>
+					<h3 th:text="${'Adresse : '+customer.address}"></h3>
+					<h3 th:text="${'Tél : '+customer.phone}"></h3>
+
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="card col-md-5 mt-3  text-center border rounded">
+				<div class="card-header  bg-info fs-5">Articles</div>
+				<div class="card-body">
+					<table class="table" aria-describedby="article_table">
+						<thead>
+							<tr>
+
+								<th>Description</th>
+								<th>Marque</th>
+								<th>Quantité</th>
+								<th>Prix</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="o:${cart}">
+
+								<td th:text="${o.Article.description}"></td>
+								<td th:text="${o.Article.brand}"></td>
+								<td th:text="${'x '+o.quantity}"></td>
+								<td th:text="${o.Article.unitaryPrice+' €'}"></td>
+
+
+
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+				<div class="card-footer">
+					<p>Total de votre commande :
+					<span th:text="${total+' €'}"></span></p>
+					<a class="btn btn-success w-50" th:href="@{/saveOrder}" >Valider</a>
+				</div>
 			</div>
 		</div>
 	</div>
