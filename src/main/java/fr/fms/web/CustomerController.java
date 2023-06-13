@@ -1,7 +1,5 @@
 package fr.fms.web;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.fms.business.IBusinessImpl;
 import fr.fms.entities.Customer;
@@ -23,6 +22,8 @@ public class CustomerController {
 
 	@Autowired
 	IBusinessImpl iBusinessImpl;
+	
+	Customer cust;
 
 	@GetMapping("/customer")
 	public String customerForm(Model model) {
@@ -34,11 +35,15 @@ public class CustomerController {
 
 	// Méthode qui crée un customer en base de données.
 	@PostMapping("/saveCustomer")
-	public String saveCustomer(@Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult) {
+	public String saveCustomer(@Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult,
+			RedirectAttributes redirectAttributes) {
 		if (bindingResult.hasErrors()) {
 			return "newCustomer";
 		}
-		iBusinessImpl.saveCustomer(customer);
+		cust = customer;
+		// envoyer une variable a un autre controlleur
+		redirectAttributes.addFlashAttribute("customer", cust);
+		// iBusinessImpl.saveCustomer(customer);
 		return "redirect:/order";
 	}
 }

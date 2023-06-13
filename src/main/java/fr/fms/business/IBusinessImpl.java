@@ -13,9 +13,13 @@ import org.springframework.stereotype.Service;
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
 import fr.fms.dao.CustomerRepository;
+import fr.fms.dao.OrderItemRepository;
+import fr.fms.dao.OrderRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 import fr.fms.entities.Customer;
+import fr.fms.entities.Order;
+import fr.fms.entities.OrderItem;
 
 @Service
 public class IBusinessImpl implements IBusiness {
@@ -24,6 +28,11 @@ public class IBusinessImpl implements IBusiness {
 
 	@Autowired
 	ArticleRepository articleRepository;
+
+	@Autowired
+	OrderRepository orderRepository;
+	@Autowired
+	OrderItemRepository orderItemRepository;
 
 	@Autowired
 	CategoryRepository categoryRepository;
@@ -92,8 +101,18 @@ public class IBusinessImpl implements IBusiness {
 	}
 
 	@Override
-	public void saveCustomer(Customer customer) {
-		customerRepository.save(customer);
+	public Customer saveCustomer(Customer customer) {
+		return customerRepository.saveAndFlush(customer);
 	}
 	// Customer
+
+	@Override
+	public Order saveOrder(Order order) {
+		return orderRepository.saveAndFlush(order);
+	}
+
+	@Override
+	public void saveOrderItem(OrderItem orderItem) {
+		orderItemRepository.save(orderItem);
+	}
 }

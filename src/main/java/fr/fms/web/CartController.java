@@ -20,10 +20,10 @@ public class CartController {
 
 	protected List<OrderItem> cart = new ArrayList<>();
 
+	protected double total = 0;
+
 	@GetMapping("/cart")
 	public String cart(Model model) {
-		
-		double total = 0;
 		for (OrderItem orderItem : cart) {
 			total += orderItem.getArticle().getUnitaryPrice() * orderItem.getQuantity();
 		}
@@ -69,12 +69,10 @@ public class CartController {
 	}
 
 	public OrderItem findFirst(Long id) {
-		return cart.stream().filter(o -> {
-			return o.getArticle().getId().equals(id);
-		}).findAny().orElse(null);
+		return cart.stream().filter(o -> o.getArticle().getId().equals(id)).findAny().orElse(null);
 	}
 
-	// TODO : enregistrer la commande
-	// TODO : order.html => div (recap du panier)  div(recap du customer) => valider (enregitre la commande et redirige vers page de remerciement)
+	// TODO : order.html => div (recap du panier) div(recap du customer) => valider
+	// (enregitre la commande et redirige vers page de remerciement)
 	// nicolas page remerciement
 }
