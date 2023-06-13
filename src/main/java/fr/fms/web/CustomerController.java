@@ -19,11 +19,15 @@ import fr.fms.entities.Customer;
 public class CustomerController {
 
 	@Autowired
+	CartController cartController;
+
+	@Autowired
 	IBusinessImpl iBusinessImpl;
 
 	@GetMapping("/customer")
 	public String customerForm(Model model) {
 
+		model.addAttribute("cartSize", cartController.cart.size());
 		model.addAttribute("customer", new Customer());
 		return "newCustomer";
 	}
