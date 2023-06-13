@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import fr.fms.business.IBusinessImpl;
 import fr.fms.entities.Article;
 import fr.fms.entities.Order;
@@ -20,56 +18,54 @@ public class CartController {
 	@Autowired
 	IBusinessImpl iBusinessImpl;
 
-	private OrderItem orderItem;
-	private boolean trouve;
 	protected List<OrderItem> cart = new ArrayList<>();
 
-	// panier affichage CartController (structure d enregistrement List(ArrayList)
 	@GetMapping("/cart")
 	public String cart(Model model) {
 		model.addAttribute("cart", cart);
+		model.addAttribute("cartSize", cart.size());
 		return "cart";
 	}
 
 	@GetMapping("/add")
 	public String addToCart(Model model, Long id, int page, String keyword, Long category) {
 		Article article = iBusinessImpl.getArticleById(id);
-		System.out.println("cart.size()  " + cart.size());
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		OrderItem orderItem = null;
+
+		if (findFirst(id) != null) {
+			orderItem = findFirst(id);
+			orderItem.setQuantity(orderItem.getQuantity() + 1);
+		} else {
+			orderItem = new OrderItem(null, 1, article, new Order());
+			cart.add(orderItem);
+		}
 
 		model.addAttribute("cart", cart);
-		System.out.println("cart size : " + cart.size());
+
 		return "redirect:/index?page=" + page + "&keyword=" + keyword + "&category" + category;
 	}
 
-	// => panier) et recuperer le cart.size => Navbarre
-	// add to cart button addToCart(index) => OrderItem => quantity ++
-	// delete from cart
+	@GetMapping("/remove")
+	public String remove(Model model, Long id) {
+		cart.stream().filter(o -> o.getArticle().getId().equals(id)) // Condition here
+				.findFirst().ifPresent(cart::remove);
+		model.addAttribute("cart", cart);
+		if (cart.isEmpty())
+			return "redirect:/index";
+		return "redirect:/cart";
+	}
 
-	// enregistrer la commande
+	
+
+	public OrderItem findFirst(Long id) {
+		return cart.stream().filter(o -> {
+			return o.getArticle().getId().equals(id);
+		}).findAny().orElse(null);
+	}
+	
+	
+	//TODO : enregistrer la commande
+	
+	
 }

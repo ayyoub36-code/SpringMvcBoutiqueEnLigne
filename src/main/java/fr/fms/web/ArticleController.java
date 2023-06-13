@@ -20,7 +20,8 @@ import fr.fms.entities.Category;
 @Controller
 public class ArticleController {
 	
-	
+	@Autowired
+	CartController cartController;
 
 	@Autowired
 	IBusinessImpl iBusinessImpl;
@@ -48,6 +49,7 @@ public class ArticleController {
 		// recuperer les categories
 		List<Category> categories = iBusinessImpl.getCategories();
 		model.addAttribute("categories", categories);
+		model.addAttribute("cartSize", cartController.cart.size());
 
 		model.addAttribute("pages", new int[pages.getTotalPages()]);
 		model.addAttribute("currentPage", page);
