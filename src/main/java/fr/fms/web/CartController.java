@@ -19,11 +19,11 @@ public class CartController {
 	IBusinessImpl iBusinessImpl;
 
 	protected List<OrderItem> cart = new ArrayList<>();
-
+	protected double total = 0;
 	@GetMapping("/cart")
 	public String cart(Model model) {
 		
-		double total = 0;
+		total = 0;
 		for (OrderItem orderItem : cart) {
 			total += orderItem.getArticle().getUnitaryPrice() * orderItem.getQuantity();
 		}

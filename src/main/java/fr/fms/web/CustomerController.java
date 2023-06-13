@@ -1,5 +1,6 @@
 package fr.fms.web;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -11,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.fms.business.IBusinessImpl;
 import fr.fms.entities.Customer;
@@ -34,11 +36,13 @@ public class CustomerController {
 
 	// Méthode qui crée un customer en base de données.
 	@PostMapping("/saveCustomer")
-	public String saveCustomer(@Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult) {
+	public String saveCustomer(@Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		if (bindingResult.hasErrors()) {
 			return "newCustomer";
 		}
 		iBusinessImpl.saveCustomer(customer);
+		//envoie vers un oerderController
+		redirectAttributes.addFlashAttribute("customer",customer);
 		return "redirect:/order";
 	}
 }
