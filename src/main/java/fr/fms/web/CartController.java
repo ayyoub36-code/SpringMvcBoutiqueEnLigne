@@ -21,7 +21,7 @@ public class CartController {
 	IBusinessImpl iBusinessImpl;
 
 	private OrderItem orderItem;
-private boolean trouve;
+	private boolean trouve;
 	protected List<OrderItem> cart = new ArrayList<>();
 
 	// panier affichage CartController (structure d enregistrement List(ArrayList)
@@ -34,36 +34,34 @@ private boolean trouve;
 	@GetMapping("/add")
 	public String addToCart(Model model, Long id, int page, String keyword, Long category) {
 		Article article = iBusinessImpl.getArticleById(id);
-
-//		trouve=false;
-//	cart.stream().forEach(o ->{
-//		
-//		if(o.getArticle().getId()==id) {
-//			o.setQuantity(o.getQuantity() + 1);
-//			trouve=true;
-//		
-//	}else {
-//
-//		trouve=false;
-//	}
-//	});
-//		if(trouve==false) {
-//			orderItem = new OrderItem(null, 1, article, new Order());
-//			cart.add(orderItem);
-//		}
-		
-		
-//		orderItem = cart.stream().filter(o -> {return o.getArticle().getId().equals(id);}).findAny().orElse(null);
-//		
-//			orderItem.setQuantity(orderItem.getQuantity() + 1);
-//
-//		
-//
-//			orderItem = new OrderItem(null, 1, article, new Order());
-//
-//			cart.add(orderItem);
+		System.out.println("cart.size()  " + cart.size());
 
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
 		model.addAttribute("cart", cart);
 		System.out.println("cart size : " + cart.size());
 		return "redirect:/index?page=" + page + "&keyword=" + keyword + "&category" + category;
