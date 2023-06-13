@@ -22,6 +22,13 @@ public class CartController {
 
 	@GetMapping("/cart")
 	public String cart(Model model) {
+		
+		double total = 0;
+		for (OrderItem orderItem : cart) {
+			total += orderItem.getArticle().getUnitaryPrice() * orderItem.getQuantity();
+		}
+
+		model.addAttribute("total", total);
 		model.addAttribute("cart", cart);
 		model.addAttribute("cartSize", cart.size());
 		return "cart";
@@ -29,7 +36,12 @@ public class CartController {
 
 	@GetMapping("/add")
 	public String addToCart(Model model, Long id, int page, String keyword, Long category) {
+
 		Article article = iBusinessImpl.getArticleById(id);
+
+		if (article == null) {
+			return "404";
+		}
 
 		OrderItem orderItem = null;
 
@@ -56,16 +68,13 @@ public class CartController {
 		return "redirect:/cart";
 	}
 
-	
-
 	public OrderItem findFirst(Long id) {
 		return cart.stream().filter(o -> {
 			return o.getArticle().getId().equals(id);
 		}).findAny().orElse(null);
 	}
-	
-	
-	//TODO : enregistrer la commande
-	
-	
+
+	// TODO : enregistrer la commande
+	// TODO : order.html => div (recap du panier)  div(recap du customer) => valider (enregitre la commande et redirige vers page de remerciement)
+	// nicolas page remerciement
 }

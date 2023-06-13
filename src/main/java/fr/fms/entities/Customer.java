@@ -27,8 +27,9 @@ public class Customer implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	@NotNull
+	@Size(min = 2, max = 50)
 	private String firstName;
 	@NotNull
 	private String lastName;
@@ -36,7 +37,7 @@ public class Customer implements Serializable {
 	private String email;
 	@NotNull
 	private String address;
-	@Size(max = 10)
+	@Size(min = 10, max = 10)
 	private String phone;
 
 	@OneToMany(mappedBy = "customer")

@@ -12,8 +12,10 @@ import org.springframework.stereotype.Service;
 
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
+import fr.fms.dao.CustomerRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
+import fr.fms.entities.Customer;
 
 @Service
 public class IBusinessImpl implements IBusiness {
@@ -25,6 +27,9 @@ public class IBusinessImpl implements IBusiness {
 
 	@Autowired
 	CategoryRepository categoryRepository;
+
+	@Autowired
+	CustomerRepository customerRepository;
 
 	@Override
 	public Page<Article> getArticlesPaginateByKeyWord(int page, String kw) {
@@ -75,4 +80,20 @@ public class IBusinessImpl implements IBusiness {
 		articleRepository.deleteById(id);
 
 	}
+
+	@Override
+	public Customer getCustomerById(Long id) {
+		Optional<Customer> optional = customerRepository.findById(id);
+		if (optional.isPresent()) {
+			return optional.get();
+		}
+		LOGGER.warn("Customer introuvable !");
+		return null;
+	}
+
+	@Override
+	public void saveCustomer(Customer customer) {
+		customerRepository.save(customer);
+	}
+	// Customer
 }
