@@ -51,6 +51,8 @@
 								<td th:text="${a.unitaryPrice}"></td>
 								<td><a class="btn btn-primary"
 									th:href="@{/edit(id=${a.id})}">Edit</a></td>
+								<td><a class="btn btn-outline-success"
+									th:href="@{/add(id=${a.id},page=${currentPage},category=${currentCategory},keyword=${keyword})}">AddToCart</a></td>
 								<td><a class="btn btn-danger"
 									th:href="@{/delete(id=${a.id},page=${currentPage},keyword=${keyword})}">Delete</a>
 								</td>

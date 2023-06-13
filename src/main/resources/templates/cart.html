@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymelieaf/layout"
+	layout:decorate="layout" lang="">
+<head>
+<meta charset="utf-8">
+<title>Panier</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+			<div class="card">
+				<div class="card-header bg-primary p-3">
+					<h3 class="text-white">Panier</h3>
+				</div>
+				<div class="card-body">
+
+					<table class="table" aria-describedby="article_table">
+						<thead>
+							<tr>
+
+								<th>Description</th>
+								<th>Marque</th>
+								<th>Quantité</th>
+								<th>Prix</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="o:${cart}">
+
+								<td th:text="${o.Article.description}"></td>
+								<td th:text="${o.Article.brand}"></td>
+								<td th:text="${'x '+o.quantity}"></td>
+								<td th:text="${o.Article.unitaryPrice+' €'}"></td>
+
+
+								<td><a class="btn btn-danger"
+									th:href="@{/remove(id=${o.Article.id})}"><i
+										class="bi bi-trash"></i></a></td>
+							</tr>
+						</tbody>
+					</table>
+<div>Total de votre commande : <span th:text="${total+' €'}"></span>
+<a th:href="@{/customer}" class="btn btn-info mt-5 w-50  d-grid gap-2 col-6 mx-auto">Passer commande</a>
+</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
