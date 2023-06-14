@@ -4,6 +4,8 @@
 <head>
 <meta charset="utf-8">
 <title>layout</title>
+<link rel="stylesheet" href="../static/css/subscrabe.css"
+	th:href="@{css/subscrabe.css}">
 <link rel="stylesheet"
 	href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -45,5 +47,58 @@
 		</div>
 	</nav>
 	<section layout:fragment="content"></section>
+	<div class="container my-2">
+		<footer
+			class="text-center text-lg-start border border-white mt-xl-5 pt-4"
+			style="background-color: black;">
+			<div class="container p-4">
+				<div class="row" style="color: #999999">
+					<div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+						<h5 class="text-uppercase mb-4">NOTRE MONDE</h5>
+						<ul class="list-unstyled mb-4">
+							<li><a href="#!" class="text-white">A propos de nous</a></li>
+							<li><a href="#!" class="text-white">Collections</a></li>
+							<li><a href="#!" class="text-white">Philosophie
+									environnementale</a></li>
+							<li><a href="#!" class="text-white">Collaborations avec
+									des artistes</a></li>
+						</ul>
+					</div>
+					<div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+						<h5 class="text-uppercase mb-4">Assistance</h5>
+
+						<ul class="list-unstyled">
+							<li><a href="#!" class="text-white">Nous contacter</a></li>
+							<li><a href="#!" class="text-white">Guide des tailles</a></li>
+							<li><a href="#!" class="text-white">Informations sur
+									l'expédition</a></li>
+							<li><a href="#!" class="text-white">Retours et échanges</a></li>
+							<li><a href="#!" class="text-white">Paiement</a></li>
+						</ul>
+					</div>
+					<div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+						<h5 class="text-uppercase mb-4">CARRIÈRES</h5>
+
+						<ul class="list-unstyled">
+							<li><a href="#!" class="text-white">Emplois</a></li>
+						</ul>
+					</div>
+					<div class="parent-wrapper">
+						<span class="close-btn glyphicon glyphicon-remove"></span>
+						<div class="subscribe-wrapper">
+							<h4>ABONNEZ-VOUS À NOTRE NEWSLETTER</h4>
+							<input type="email" name="email" class="subscribe-input"
+								placeholder="Votre adresse e-mail">
+							<div class="submit-btn">ENVOYER</div>
+						</div>
+					</div>
+					<div class="text-center p-3 border-top border-white"
+						style="color: #999999">
+						© 2023 Copyright: <a class="text-white" th:href="@{/index}">IT Boutique.com</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
 </body>
 </html>
